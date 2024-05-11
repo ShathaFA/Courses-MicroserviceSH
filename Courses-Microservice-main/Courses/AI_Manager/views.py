@@ -8,7 +8,7 @@ from rest_framework.exceptions import APIException
 import concurrent.futures
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = ''
 class GenerateCourseContentAPIView(generics.CreateAPIView):
     serializer_class = GenerateCourseContentSerializer
 
@@ -147,7 +147,7 @@ from courseAdminstration.models import Quiz, Question, Lesson
 import openai
 
 # Move API key to a secure location (e.g., environment variable)
-openai.api_key = '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'
+openai.api_key = ''
 class GenerateMCQsAPIView(generics.CreateAPIView):
     serializer_class = GenerateMCQsSerializer
 
@@ -263,7 +263,7 @@ import openai
 from rest_framework.exceptions import APIException
 
 # Set your OpenAI API key
-openai.api_key = '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'
+openai.api_key = ''
 
 class GenerateLessonContentAPIView(generics.CreateAPIView):
     serializer_class = GenerateLessonContentSerializer
