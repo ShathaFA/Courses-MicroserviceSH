@@ -1,0 +1,585 @@
+/* Reset default styles */
+body,
+html,
+ul,
+li,
+h1,
+h2,
+h3,
+p,
+form,
+button,
+input {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 50%;
+  /* Adjusted to vertically center the sidebar */
+  transform: translateY(-50%);
+  width: 270px;
+  background-color: #f8f9fa;
+  color: rgba(84, 55, 134, 1);
+  padding: 20px;
+  transition: width 0.3s, display 0s;
+  overflow-y: auto;
+  height: calc(100vh - 190px);
+  /* Subtract padding */
+  scrollbar-width: thin;
+}
+
+.sidebar.collapsed {
+  display: none;
+  /* Hide the sidebar when collapsed */
+}
+
+
+.sidebar .text {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+}
+
+.sidebar ul {
+  list-style: none;
+}
+
+.sidebar ul li {
+  margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  display: block;
+  padding: 10px 15px 10px 5px;
+  border-radius: 5px;
+  transition: background-color 0.3s;
+}
+
+.sidebar ul li a:hover {
+  color: rgb(255, 255, 255) !important;
+  background: rgba(84, 55, 134, 1) !important;
+}
+
+.sidebar ul li .feat-show,
+.sidebar ul li .serv-show {
+  display: none;
+  padding-left: 20px;
+}
+
+.course-content {
+  margin-left: 250px;
+  padding: 20px;
+  width: calc(100% - 570px);
+  display: block;
+  /* Ensure the image is treated as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
+  flex-direction: column;
+  background-color: #f9f9f9;
+  border-radius: 20px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.course-content img.coures-inner-img {
+  max-width: 60%;
+  height: 40%;
+  margin-bottom: 30px;
+  display: block;
+  /* Ensure the image is treated as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
+}
+
+
+.course-content .header {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  text-align: center;
+}
+
+.course-content h1.Course-Title {
+  margin-bottom: 10px;
+  text-align: center;
+  color: #513886;;
+}
+
+.course-content .courese-info {
+  display: flex;
+  gap: 10px;
+  display: block;
+  /* Ensure the image is treated as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
+}
+
+.course-content .btn-theme {
+  margin-top: 20px;
+  background-color: #513886;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 30px;
+  text-transform: capitalize;
+  transition: all 0.5s ease;
+  box-shadow: black;
+  cursor: pointer;
+
+}
+
+.course-content .btn-theme:hover {
+  color: rgba(84, 55, 134, 1);
+  background-color: rgba(255, 205, 78, 1);
+}
+
+.Course-topic,
+.Course-deficality {
+  font-size: 1.2rem;
+  margin-bottom: 5px;
+  color: #7d7c7c;
+  padding: 10px 0px 10px 25px;
+}
+
+.Course-topic:hover,
+.Course-deficality:hover {
+  color: rgba(254, 183, 55, 1);
+  transform: scale(1.1);
+}
+
+/* -------------------------------Add section style----------------------------------------- */
+/* Style the modal - hidden by default */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4)
+    /* Enable opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  width: 40%;
+  /* Could be wider or narrower */
+  padding: 0px 50px 50px 50px;
+  border: 3px solid #513886;
+  border-radius: 30px;
+  background-color: #fff;
+  /* White */
+  position: relative;
+  /* To position the close button */
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+/* Add a zoom animation */
+@keyframes zoom {
+  from {
+    transform: scale(0, 0);
+  }
+
+  /* Start from 0 scale */
+  to {
+    transform: scale(1, 1);
+  }
+
+  /* Scale to 100% */
+}
+
+/* Style the close button */
+.close {
+  color: #513886;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Style the create course button */
+.createSectionBtn {
+  background-color: #513886;
+  /* Apply the specified color */
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  /* Make it the same width as inputs */
+  margin-top: 10px;
+  /* Add space after form */
+}
+
+/* Style form elements */
+
+.label-Course {
+  color: #513886;
+  /* Apply the specified color to labels */
+  font-weight: 100;
+  z-index: 100;
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  left: 15px;
+  top: 9px;
+  background-color: #ffffff;
+  font-size: 18px;
+}
+
+.Ctext {
+  width: 100%;
+  padding: 10px;
+  border: 1.9px solid #513886;
+  border-radius: 7px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  line-height: 3ex;
+  position: relative;
+}
+
+.title-create-Section {
+  color: #513886;
+  /* Apply the specified color to h2 */
+  font-size: 48px;
+  /* Adjust font size */
+  margin-top: 10%;
+}
+
+::file-selector-button {
+  display: none;
+}
+
+
+/*---------------------------- Add lesson style--------------------------------- */
+/* Style the modal - hidden by default */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.4)
+    /* Enable opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  margin: 15% auto;
+  /* 15% from the top and centered */
+  width: 40%;
+  /* Could be wider or narrower */
+  padding: 0px 50px 50px 50px;
+  border: 3px solid #513886;
+  border-radius: 30px;
+  background-color: #fff;
+  /* White */
+  position: relative;
+  /* To position the close button */
+  animation-name: zoom;
+  animation-duration: 0.6s;
+}
+
+/* Add a zoom animation */
+@keyframes zoom {
+  from {
+    transform: scale(0, 0);
+  }
+
+  /* Start from 0 scale */
+  to {
+    transform: scale(1, 1);
+  }
+
+  /* Scale to 100% */
+}
+
+/* Style the close button */
+.close {
+  color: #513886;
+  position: absolute;
+  top: 15px;
+  right: 35px;
+  font-size: 36px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Style the create lesson button */
+.createLessonBtn {
+  background-color: #513886;
+  /* Apply the specified color */
+  color: #fff;
+  font-size: 20px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  /* Make it the same width as inputs */
+  margin-top: 10px;
+  /* Add space after form */
+}
+
+/* Style form elements */
+
+.label-Course {
+  color: #513886;
+  /* Apply the specified color to labels */
+  font-weight: 100;
+  z-index: 100;
+  float: left;
+  height: 20px;
+  line-height: 20px;
+  position: relative;
+  left: 15px;
+  top: 9px;
+  background-color: #ffffff;
+  font-size: 18px;
+}
+
+
+textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1.9px solid #513886;
+  border-radius: 7px;
+  box-sizing: border-box;
+  margin-bottom: 10px;
+  line-height: 3ex;
+  position: relative;
+}
+
+.title-create-Lesson {
+  color: #513886;
+  /* Apply the specified color to h2 */
+  font-size: 48px;
+  /* Adjust font size */
+  margin-top: 10%;
+}
+
+::file-selector-button {
+  display: none;
+}
+/* -----------------for editor------------------ */
+/* Styling the form container */
+.form1 {/* Use flexbox for centering */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  width: 63%; /* Adjust the width of the form */
+  background-color: #ffffff; /* Light background color */
+  border: 2px solid rgb(217, 217, 217);
+  border-radius: 10px; /* Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Shadow effect */
+  margin: 0 auto; /* Center the form container on the page */
+  padding: 20px; /* Add padding */
+}
+
+/* Styling the editor container */
+#editor-container {
+  width: 100%;
+  height: 400px; /* Adjust the height as needed */
+  border: 1px solid rgb(217, 217, 217); /* Border color */
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* Styling the button */
+.btn-theme-inner {
+  background-color: #513886;
+  padding: 8px 65px;
+  border: none;
+  border-radius: 30px;
+  color: white;
+  font-size: 18px;
+  text-transform: capitalize;
+  transition: all 0.5s ease;
+  box-shadow: black;
+  display: block; /* Ensure the button is a block-level element */
+  margin: 20px auto; /* Center the button and add spacing */
+  cursor: pointer;
+}
+
+.btn-theme-inner:hover {
+  color: rgba(84, 55, 134, 1);
+  background-color: rgba(255, 205, 78, 1);
+}
+
+/* -------------------for the lesson content---------------------- */
+/* General styles */
+/* General styles */
+/* General styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  background-color: #f7f9fc;
+}
+
+.lesson-content {
+  max-width: 100%;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: white;
+}
+
+.lesson-nav {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.menu {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.menu li a {
+  text-decoration: none;
+  color: #555;
+  padding: 12px 16px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-weight: bold;
+  display: block;
+  border: 2px solid transparent;
+}
+
+.menu li a:hover {
+  background-color: #543787;
+  color: white;
+  border: 2px solid #543787;
+}
+
+.menu li a.active {
+  background-color: rgba(255, 205, 78, 1);
+  color: white;
+  border: 2px solid  rgba(255, 205, 78, 1);
+}
+
+.lesson-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #333;
+}
+
+.lesson-image {
+  width: 60%;
+  height: 50%;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: block;
+  /* Ensure the image is treated as a block element */
+  margin: 0 auto;
+  /* Center the image horizontally */
+
+}
+
+.lesson-text, .lesson-media {
+  margin-bottom: 20px;
+  color: #666;
+  line-height: 1.6;
+  border-radius: 12px;
+}
+/* Hide sections initially */
+#content, #video, #audio {
+  display: none;
+}
+
+/* Show the active section */
+.active {
+  display: block;
+}
+
+
+
+
+/*--------------------------- Media query for responsiveness ----------------------------*/
+@media (max-width: 800px) {
+  body {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    transform: none;
+  }
+
+  .course-content {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .form1, .lesson-image{
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .lesson-title{
+    display: block;
+    /* Ensure the image is treated as a block element */
+    margin: 0 auto;
+    /* Center the image horizontally */
+    margin-bottom: 2%;
+  }
+  
+
+  /* Make the sidebar collapse by default on smaller screens */
+  .sidebar.collapsed {
+    display: none;
+  }
+
+  .btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background-color: #513886;
+    color: white;
+    padding: 10px;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}

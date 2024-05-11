@@ -1,0 +1,234 @@
+/* Course section start */
+.course {
+    text-align: center;
+    padding-top: 0;
+    margin: 0 auto;
+    max-width: 1200px;
+  }
+  
+  .name-of-all-courses {
+    line-height: 0.5;
+    color: rgb(255, 255, 255);
+    background-image: url(https://odoocdn.com/openerp_website/static/src/img/highlights/yellow_highlight_bold_05.svg);
+    background-repeat: no-repeat;
+    background-size: 25%;
+    padding: 3%;
+    font-size: 90px;
+    font-weight: 500;
+    background-position: center;
+    text-align: center;
+  }
+  
+  .course .courses .details {
+    padding: 0 15px;
+    text-align: center;
+    font-weight: 600;
+  }
+  
+  .course .courses .more-details h6 {
+    padding: 10px 10px 0 22px;
+    display: inline-block;
+    color: gray;
+    font-weight: 400;
+  }
+  
+  .course h2 {
+    font-size: 40px;
+    color: black;
+    font-weight: 350;
+    text-transform: capitalize;
+    text-align: center;
+  }
+  
+  .course h2 span {
+    color: rgba(84, 55, 134, 1);
+    text-decoration: underline;
+    font-size: 3.2rem;
+    line-height: 6.5rem;
+  }
+  
+  .course-section {
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+  
+  .course-info {
+    width: calc(33.33% - 20px);
+    /* Adjusted width for each course with 20px gap */
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 20px;
+    /* Adjusted margin to create space between rows */
+    border-radius: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+  }
+  
+  .course-info:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  .course-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .category-type {
+    font-size: 15px;
+    font-weight: 400;
+    padding-bottom: 5px;
+    background-image: url(https://odoocdn.com/openerp_website/static/src/img/highlights/yellow_highlight_bold_05.svg);
+    background-repeat: repeat;
+    background-size: 89%;
+    background-position: 1%;
+  }
+  
+  .course-details {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .course-details p {
+    margin: 5px 0;
+  }
+  
+  .course-image {
+    padding-top: 5px;
+    max-width: 100%;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    /* Set uniform width for all images */
+    height: 200px;
+    /* Set uniform height for all images */
+    object-fit: cover;
+  }
+  
+  /* Category and search section start */
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .dropbtn {
+    background-color: transparent;
+    border-radius: 5px;
+    border: 0.1px solid rgb(216, 216, 216);
+    color: rgba(84, 55, 134, 1);
+    padding: 10px;
+    font-size: 17px;
+    cursor: pointer;
+  }
+  
+  .dropbtn:hover {
+    background-color: rgb(241, 239, 245);
+    color: rgba(84, 55, 134, 1);
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    width: 280px;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+  
+  .search-container {
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .search-container input[type=text] {
+    padding: 10px;
+    margin-top: 10px;
+    font-size: 17px;
+    border: none;
+    width: 75%;
+  }
+  
+  .search-container button {
+    padding: 10px;
+    margin-top: 10px;
+    background: #ddd;
+    font-size: 17px;
+    border: none;
+    cursor: pointer;
+    width: 25%;
+  }
+  
+  .search-container button:hover {
+    background: #ccc;
+  }
+  
+  .show {
+    display: block;
+  }
+  
+  /* Media Queries for responsiveness */
+  @media (max-width: 1024px) {
+    /* Adjust margins and paddings for smaller screens */
+    .course {
+        margin: 0 auto;
+        padding: 10px;
+    }
+  
+    .course-info {
+        width: calc(50% - 20px);
+    }
+  
+    .course h2 {
+        font-size: 30px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    /* Stack elements for smaller screens */
+    .course-section {
+        flex-direction: column;
+    }
+  
+    .course-info {
+        width: 100%;
+    }
+  
+    .course h2 {
+        font-size: 25px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    /* Stack elements for smaller screens */
+    .course h2 {
+        font-size: 20px;
+    }
+  
+    .course-section {
+        padding: 10px;
+    }
+  
+    .course-info {
+        padding: 10px;
+    }
+  }
+  

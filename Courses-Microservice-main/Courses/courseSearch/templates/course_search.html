@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <title>All Courses</title>
+    <!-- custom link -->
+    <link rel="stylesheet" href="{% static 'css/AllCourses.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="{% static 'js/coursesList.js' %}"></script>
+</head>
+<body>
+    <form action="{% url 'search_courses' %}" method="GET">
+        <input type="text" name="q" placeholder="Search courses...">
+        <button type="submit">Search</button>
+    </form>
+    
+    <!--  All Courses section start -->
+    <section class="course">
+        <!-- <h2 ><span>All</span> Courses</h2> -->
+        <h2 class="name-of-all-courses"> All Courses</h2>
+
+        <div class="dropdown">
+            <button onclick="toggleDropdown()" class="dropbtn">Category</button>
+            <div id="categoryDropdown" class="dropdown-content">
+                <!-- Replace the search container with the form -->
+                <form action="{% url 'search_courses' %}" method="GET">
+                    <input type="text" name="q" placeholder="Search courses...">
+                    <button type="submit">Search</button>
+                </form>
+                <a href="#">All</a>
+                <a href="#">Design</a>
+                <a href="#">Science</a>
+                <a href="#">Programming</a>
+                <a href="#">Business</a>
+                <a href="#">Languages</a>
+                <a href="#">Personal Development</a>
+                <a href="#">Art</a>
+            </div>
+        </div>
+        
+
+        <div class="course-section" id="course-section">
+            {% for course in courses %}
+                <div class="course-info" data-course-id="{{ course.id }}">
+                    <img class="course-image" src="{% static course.coursePic %}" alt="{{ course.title }}">
+                    <div class="course-title">{{ course.title }}</div>
+                    <div class="course-details">
+                        <div class="category">{{ course.category }}</div>
+                        <div class="hours"><span class="emoji">&#9200;</span> {{ course.duration }} hours</div>
+                        <div class="students"><span class="emoji">&#128100;</span> {{ course.enrolled_students|default:'0' }}</div>
+                        <div class="lessons"><span class="emoji">&#128214;</span> 10</div>
+                        <div class="instructor"><span class="emoji">&#128188;</span> {{ course.instructor }}</div>
+                        <div class="reviews">⭐⭐⭐⭐⭐
+                            <p>{{ course.rating }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>No courses found.</p>
+            {% endfor %}
+        </div>
+        
+    </section>
+    <!-- All Courses section end -->
+
+    <script>
+        function toggleDropdown() {
+            document.getElementById("categoryDropdown").classList.toggle("show");
+        }
+
+        function searchCategory() {
+            var input, filter, ul, li, a, i;
+            input = document.getElementById("categorySearchInput");
+            filter = input.value.toUpperCase();
+            div = document.getElementById("categoryDropdown");
+            a = div.getElementsByTagName("a");
+            for (i = 0; i < a.length; i++) {
+                txtValue = a[i].textContent || a[i].innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    a[i].style.display = "";
+                } else {
+                    a[i].style.display = "none";
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
+{% endblock %}

@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Course Pop-up</title>
+    <!-- custmized css related to this page -->
+    <link rel="stylesheet" href="{% static 'css/firstPageOfCreateCourse.css' %}">
+    <!-- font aw icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="{% static 'js/createCourse.js' %}"></script>
+
+
+</head>
+<body>
+
+    <button id="createCourseBtn">Create Course</button>
+
+    <div id="createCourseModal" class="modal">
+
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="title-create-coures">Create Course <i class="fa-solid fa-microphone-lines" style="color: #513886;"></i></h2>
+        <!-- <form action="/action_page.php"> -->
+          <form id="createCourseForm">
+            {% csrf_token %}
+
+            <label for="courseTitle">Course Title:</label>
+          <input type="text" id="courseTitle" name="courseTitle" placeholder="Enter course title..">
+
+          <label for="courseCategory">Course Category:</label>
+          <input type="text" id="courseCategory" name="courseCategory" placeholder="Enter course category..">
+
+          <label for="CourseInstructor">Course Instructor ID:</label>
+          <input type="text" id="CourseInstructor" name="CourseInstructor" placeholder="Enter your ID..">
+          
+          <label for="courseDescription">Course Description:</label>
+          <textarea id="courseDescription" name="courseDescription" placeholder="Write a course description.."></textarea> 
+
+          <label for="difficultyLevel">Difficulty Level:</label>
+          <input type="text" id="difficultyLevel" name="difficultyLevel" placeholder="Enter course difficulty Level..">
+
+
+          <label for="duration">Duration:</label>
+          <input type="text" id="duration" name="duration" placeholder="Enter course duration..">
+
+          <!-- <select   class="minimal">
+            <option value="Beginner">Beginner</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          </select> -->
+          <br>
+          <label for="courseImage">Picture:</label>
+          <input type="file" id="courseImage" name="coursePic" accept="image/*">
+          <br>
+          <button type="submit" class="createCourseBtn">Create</button>
+        </form>
+      </div>
+
+    </div>
+    <script src="{% static 'js/firstPageOfCreateCourse.js' %}"></script>
+</body>
+</html>

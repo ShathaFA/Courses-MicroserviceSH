@@ -1,0 +1,137 @@
+     /* Style the modal - hidden by default */
+.modal {
+display: none; /* Hidden by default */
+position: fixed; /* Stay in place */
+z-index: 1; /* Sit on top */
+left: 0;
+top: 0;
+width: 100%; /* Full width */
+height: 100%; /* Full height */
+overflow: auto; /* Enable scroll if needed */
+background-color: rgba(0, 0, 0, 0.4)/* Enable opacity */
+}
+
+/* Modal Content */
+.modal-content {
+margin: 15% auto; /* 15% from the top and centered */
+width: 40%; /* Could be wider or narrower */
+padding: 0px 50px 50px 50px;
+border: 3px solid #513886;
+border-radius: 30px;
+background-color: #fff; /* White */
+position: relative; /* To position the close button */
+animation-name: zoom;
+animation-duration: 0.6s;
+}
+
+/* Add a zoom animation */
+@keyframes zoom {
+from {transform: scale(0, 0);} /* Start from 0 scale */
+to {transform: scale(1, 1);} /* Scale to 100% */
+}
+
+/* Style the close button */
+.close {
+color: #513886;
+position: absolute;
+top: 15px;
+right: 35px;
+font-size: 36px;
+font-weight: bold;
+}
+
+/* Style the create course button */
+.createCourseBtn {
+background-color: #513886; /* Apply the specified color */
+color: #fff;
+font-size: 20px;
+padding: 10px 20px;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+width: 100%; /* Make it the same width as inputs */
+margin-top: 10px;/* Add space after form */
+}
+
+/* Style form elements */
+
+label{
+color: #513886; /* Apply the specified color to labels */
+font-weight: 100;
+z-index: 100;
+float: left;
+height: 20px;
+line-height: 20px;
+position: relative;
+left: 15px;
+top: 9px;
+background-color: #ffffff;
+font-size: 18px;
+}
+
+input[type="text"],
+input[type="file"],
+textarea {
+width: 100%;
+padding: 10px;
+border: 1.9px solid #513886;
+border-radius: 7px;
+box-sizing: border-box; 
+margin-bottom: 10px;
+line-height: 3ex;
+position: relative;
+}
+
+
+select {
+width: 100%;
+padding: 5px;
+padding-left: 10px;
+border: 2px solid #513886;
+border-radius: 7px;
+box-sizing: border-box; /* Include padding in width */
+margin-bottom: 10px;
+line-height: 5ex;
+-webkit-appearance: none;
+}
+
+select.minimal {
+background-image:
+linear-gradient(45deg, transparent 50%, #513886 50%),
+linear-gradient(135deg, #513886 50%, transparent 50%);
+background-position:
+calc(100% - 20px) calc(1em + 2px),
+calc(100% - 15px) calc(1em + 2px),
+calc(100% - 2.5em) 0.5em;
+background-size:
+5px 5px,
+5px 5px,
+1px 1.5em;
+background-repeat: no-repeat;
+}
+
+select.minimal:focus {
+background-image:
+linear-gradient(45deg, #513886 50%, transparent 50%),
+linear-gradient(135deg, transparent 50%, #513886 50%),
+linear-gradient(to right, #ccc, #ccc);
+background-position:
+calc(100% - 15px) 1em,
+calc(100% - 20px) 1em,
+calc(100% - 2.5em) 0.5em;
+background-size:
+5px 5px,
+5px 5px,
+1px 1.5em;
+background-repeat: no-repeat;
+border-color: 513886;
+outline: 0;
+}
+
+.title-create-coures{
+color: #513886; /* Apply the specified color to h2 */
+font-size: 48px; /* Adjust font size */
+}
+::file-selector-button {
+display: none;
+}

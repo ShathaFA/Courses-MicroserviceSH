@@ -1,0 +1,39 @@
+{% load static %}
+{% block content %}
+
+<!-- course_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ course.title }}</title>
+    <style>
+        /* Add CSS for course description styling if needed */
+    </style>
+</head>
+<body>
+    <h1>{{ course.title }}</h1>
+    <!-- Render the description as HTML -->
+    <div class="course-description">{{ course.description | safe }}</div>
+    <p>Difficulty Level: {{ course.get_difficulty_display }}</p>
+    {% if course.picture %}
+    <img src="{{ course.picture.url }}" alt="{{ course.title }}">
+    {% else %}
+    <p>No picture available</p>
+    {% endif %}
+
+    <!-- Display Course Material -->
+    {% if course.files.all %}
+    <h2>Course Material</h2>
+    <ul>
+        {% for file in course.files.all %}
+            <li><a href="{{ file.file.url }}">{{ file.file.name }}</a></li>
+        {% endfor %}
+    </ul>
+    {% else %}
+    <p>No files available</p>
+    {% endif %}
+</body>
+</html>

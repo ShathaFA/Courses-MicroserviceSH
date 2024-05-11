@@ -1,0 +1,129 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+  integrity="sha384-bVVah+xR6xxaWB+058RtJsL5vFsd/e5PPSd6OVvJcfKehXzKvm2mT2tRPmPb6T35"
+  crossorigin="anonymous"
+/>
+<link rel="stylesheet" href="{% static 'css/courseinfo_style.css' %}" />
+<title>course information</title>
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+/>
+
+<div class="courseinfo-infoSection">
+  <div class="info">
+    <h2 class="courseinfo-CourseTitle">
+      Google Data Analytics Professional Certificate
+    </h2>
+    <p>
+      The course description orients students by outlining the rationale for
+      the course subject or theme, framing a brief overview of the key
+      content, knowledge and skills to be learned and stating the major
+      learning strategies and activities that students will experience. The
+      course description orients students by outlining the rationale for the
+      course subject or theme, framing a brief overview of the key content,
+      knowledge and skills to be learned and stating the major learning
+      strategies and activities that students will experience.
+    </p>
+    <div>Course Instructor<span> Eyad Salem</span></div>
+    <div class="Sections-rating">
+      <span class="rating-number">4.0</span> &nbsp
+      <span class="stars">★★★★</span>
+    </div>
+    <button id="enrollButton" data-course-id="{{ course.id }}">Enroll</button>
+  </div>
+
+  <div class="courseInfoRight">
+    <img
+      src="{% static 'images/img1.jpeg' %}"
+      alt="About Image"
+      class="about-image"
+    />
+  </div>
+</div>
+<div class="courseinfo-infoSection2" id="stickyNav">
+  <nav>
+    <ul class="menu">
+      <li><a href="#About">About</a></li>
+      <li><a href="#sectionsContainer">Sections</a></li>
+    </ul>
+  </nav>
+  <hr />
+</div>
+
+<div class="courseInfoNev">
+  <div class="image-and-info">
+    <div class="courseInfo-About" id="About">
+      <h3>Course Category</h3>
+      <div class="Category"></div>
+      <br />
+      <br />
+      <h3>Details to know</h3>
+      <div class="course-details">
+        <div >Course ID: <span id="courseID">123741159</span></div>
+        <div >Difficulty level: <span id="difficultyLevel">Advanced</span></div>
+        <div >Duration: <span id="duration">3 weeks</span></div>
+      </div>
+    </div>
+    <br />
+    <div  class="courseInfo-Sections" id="sectionsContainer">
+      <h3>8 sections series</h3>
+      <div class="courseInfo-course-moreInfo">
+
+      </div>
+      <br />
+      <div class="Sections-details">
+        <div class="Sections-box" data-course="Sections 1" data-rating="4">
+          <a href="">
+            <div class="Sections-title">
+              Section 1 :Foundations: Data, Data, Everywhere
+            </div>
+          </a>
+          <div class="Sections-description">
+            Prepare for a new career in the high-growth field of data analytics,
+            with no experience or degree required. Get professional training
+            designed by Google and have the opportunity to connect with top
+            employers.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // script for the nev to move with the users
+  // JavaScript to handle sticky navigation
+  window.onscroll = function () {
+    stickyNav();
+  };
+
+  var navBar = document.getElementById("stickyNav");
+
+  var sticky = navBar.offsetTop;
+
+  function stickyNav() {
+    if (window.pageYOffset >= sticky) {
+      navBar.classList.add("sticky");
+    } else {
+      navBar.classList.remove("sticky");
+    }
+  }
+
+  // script for the read more for course
+  function toggleDetails(element) {
+    var courseDetails = element.nextElementSibling;
+    if (courseDetails.style.display === "block") {
+      courseDetails.style.display = "none";
+    } else {
+      courseDetails.style.display = "block";
+    }
+  }
+</script>
+<script src="{% static 'js/courseInfo.js' %}"></script>
+
+{% endblock %}

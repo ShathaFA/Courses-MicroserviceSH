@@ -1,0 +1,164 @@
+<!-- Got it. If you're using the OpenAI GPT-3.5 API with a secret key to generate text and images,
+ you'll need to handle the API calls in your backend server as client-side JavaScript cannot directly interact with the API using the secret key 
+ (as it would expose your key to the public). However, I can provide you with a basic example of how you might structure your frontend code to interact with the backend that handles the API calls.
+  You'll need to set up a backend server to handle the requests to the OpenAI API.
+  In this completion, the generateDescription(title) function sends a POST request to the /generate_description endpoint on your backend server, passing the title of the course as data. The backend server then interacts with the OpenAI API using your secret key to generate the description. Once the description is generated, the backend server sends the response back to the frontend,
+ where it sets the description to the Quill editor and also updates the hidden input field for submission. -->
+
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Creation</title>
+    <!-- Include Quill.js library -->
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
+    <style>
+        /* Custom CSS */
+        .course-creation-section {
+            display: flex; /* Use flexbox layout */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center content horizontally */
+            padding: 50px 0px; /* Add padding for spacing */
+        }
+
+        .container2 {
+            display: flex; /* Use flexbox layout */
+            flex-direction: column; /* Arrange items vertically */
+            align-items: center; /* Center content horizontally */
+            width: 100%; /* Set width to 100% */
+            max-width: 900px; /* Set maximum width for container2 */
+        }
+
+        .container2 form {
+            width: 100%; /* Set form width to 100% */
+            max-width: 900px; /* Set maximum width for form */
+            background-color: #fff; /* White background color for form */
+            padding: 30px; /* Add padding to form */
+            border-radius: 10px; /* Add border radius */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add shadow */
+        }
+
+        .container2 label {
+            display: block; /* Display labels in block mode */
+            margin-bottom: 10px; /* Add space below labels */
+            padding :15px;
+            font-weight: bold; /* Bold font weight for labels */
+        }
+
+        .container2 input[type="text"],
+        .container2 textarea,
+        .container2 select {
+            width: 100%; /* Make form elements full width */
+            padding: 10px; /* Add padding */
+            margin-bottom: 20px; /* Add space below form elements */
+            border: 1px solid #ccc; /* Add border */
+            border-radius: 5px; /* Add border radius */
+        }
+
+        .container2 input[type="file"] {
+            width: 100%; /* Make file input full width */
+            margin-bottom: 5px; /* Add space below file input */
+            padding: 15px; /* Increase padding */
+        }
+
+        .container2 button[type="submit"] {
+            width: 100%; /* Make submit button full width */
+            background-color: rgb(255, 183, 0); /* Button background color */
+            color: #fff; /* Button text color */
+            padding: 12px 24px; /* Add padding */
+            border: none; /* Remove border */
+            border-radius: 5px; /* Add border radius */
+            cursor: pointer; /* Add pointer cursor */
+            font-size: 18px; /* Font size */
+            transition: background-color 0.3s; /* Smooth background color transition */
+        }
+
+        .container2 button[type="submit"]:hover {
+            background-color: #cabcdf; /* Darker background color on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Course creation form -->
+    <section class="course-creation-section">
+        <h2 class="text-3xl font-bold " style="background-image: url(https://odoocdn.com/openerp_website/static/src/img/graphics/underline.svg); background-repeat:no-repeat; background-size:90% ;  font-size: 50px; padding-left: 39px; background-position: center; text-align: center;">Create a New Course by AI</h2>
+        <div class="container2">
+            <form id="course-form" action="#" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
+                
+                <label for="description">Description:</label>  <!-- Add this field for course description -->
+                <!-- Replace the input field with textarea -->
+                <textarea id="description" name="description" style="display: none;"></textarea>
+                <!-- Add a div to hold the Quill editor -->
+                <div id="editor-container" style="height: 200px;"></div>
+                
+                <label for="difficulty">Difficulty:</label>
+                <select id="difficulty" name="difficulty">
+                    <option value="1">Easy</option>
+                    <option value="2">Medium</option>
+                    <option value="3">Hard</option>
+                </select><br><br>
+                
+                <label for="picture">Course Picture:</label><br>
+                <input type="file" id="picture" name="picture" accept="image/*" required><br><br>
+                
+                <label for="material">Course Material:</label><br>
+                <input type="file" id="material" name="material" multiple required><br><br>
+                
+                <button type="submit">Create Course</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- JavaScript code -->
+    <script>
+        // Initialize Quill.js on the editor container
+        var quill = new Quill('#editor-container', {
+            theme: 'snow' // Specify theme, 'snow' is one of the built-in themes
+        });
+
+        // Listen for form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('course-form').addEventListener('submit', function(event) {
+                event.preventDefault(); // Prevent the form from submitting
+                
+                // Get the title entered by the user
+                var title = document.getElementById('title').value;
+                
+                // Generate description based on the title
+                generateDescription(title);
+            });
+        });
+
+        // Function to generate description based on title
+        function generateDescription(title) {
+            // Call your backend server endpoint to generate description
+            // You need to send a request to your backend server which then interacts with the OpenAI API using your secret key
+            // Example:
+            fetch('/generate_description', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: title }),
+            })
+            .then(response => response.json())
+            .then(data => {
+                // Set the generated description to the Quill editor
+                quill.root.innerHTML = data.description;
+                
+                // Set the description to the hidden input field
+                var descriptionTextArea = document.querySelector('textarea[name="description"]');
+                descriptionTextArea.value = data.description;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
