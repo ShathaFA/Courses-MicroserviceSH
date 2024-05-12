@@ -139,7 +139,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 DATA_UPLOAD_MAX_NUMBER_FIELDS = 10000  # adjust the number based on your requirement
 
 SITE_DOMAIN = 'http://127.0.0.1:8001'
-USERS_SERVICE_URL = 'http://127.0.0.1:8000/'
+USERS_SERVICE_URL = 'http://127.0.0.1:8000'
 CORS_ALLOW_ALL_ORIGINS = True  # For development only
 CORS_ALLOWED_ORIGINS = [USERS_SERVICE_URL]
 
