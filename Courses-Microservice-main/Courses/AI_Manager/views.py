@@ -8,10 +8,7 @@ from rest_framework.exceptions import APIException
 import concurrent.futures
 
 # Set your OpenAI API key
-
 openai.api_key = ''
- 
-
 class GenerateCourseContentAPIView(generics.CreateAPIView):
     serializer_class = GenerateCourseContentSerializer
 
@@ -229,7 +226,7 @@ from courseAdminstration.models import Quiz, Question, Lesson
 import openai
 
 # Move API key to a secure location (e.g., environment variable)
-openai.api_key = ''
+openai.api_key = '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'
 class GenerateMCQsAPIView(generics.CreateAPIView):
     serializer_class = GenerateMCQsSerializer
 
@@ -337,3 +334,69 @@ class GenerateMCQsAPIView(generics.CreateAPIView):
         }
         return Response(response_data, status=status.HTTP_200_OK)
  
+from rest_framework import generics, status
+from rest_framework.response import Response
+from courseAdminstration.models import Course, Section, Lesson, Content
+from .serializers import GenerateLessonContentSerializer
+import openai
+from rest_framework.exceptions import APIException
+
+# Set your OpenAI API key
+openai.api_key = ''
+
+class GenerateLessonContentAPIView(generics.CreateAPIView):
+    serializer_class = GenerateLessonContentSerializer
+
+    def create(self, request, *args, **kwargs):
+        try:
+            if not openai.api_key:
+                raise APIException("OpenAI API key is not set")
+
+            serializer = self.get_serializer(data=request.data)
+            serializer.is_valid(raise_exception=True)
+
+            course_name = serializer.validated_data.get('course_name')
+            course_description = serializer.validated_data.get('course_description')
+            section_name = serializer.validated_data.get('section_name')
+            section_description = serializer.validated_data.get('section_description')
+            lesson_name = serializer.validated_data.get('lesson_name')
+
+            # Placeholder value for instructor ID
+            instructor_id = 8  # Replace '8' with the actual instructor ID or logic to fetch the instructor ID
+
+            # Create course with instructor ID provided
+            course = Course.objects.create(title=course_name, description=course_description, instructor=instructor_id)
+
+            # Create section under the course
+            section = Section.objects.create(title=section_name, description=section_description, course=course)
+
+            # Generate lesson content based on user input
+            lesson_content = self.generate_lesson_content(course_name, course_description, section_name, section_description, lesson_name)
+
+            # Create lesson and content objects
+            lesson = Lesson.objects.create(title=lesson_name, section=section)
+            Content.objects.create(lesson=lesson, type='txt', text_content=lesson_content.strip())  # Changed from 'reference' to 'text_content'
+
+            response_data = {
+                'message': 'Lesson content generated and saved successfully',
+                'course_name': course_name,
+                'section_name': section_name,
+                'lesson_name': lesson_name,
+                'lesson_content': lesson_content  # Include the generated lesson content in the response
+            }
+
+            return Response(response_data, status=status.HTTP_201_CREATED)
+
+        except Exception as e:
+            return Response({'message': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
+
+    def generate_lesson_content(self, course_name, course_description, section_name, section_description, lesson_name):
+        prompt = f"Generate content for the lesson '{lesson_name}' using the entered section name '{section_name}' and description '{section_description}' of the course '{course_name}' which has a description '{course_description}' and make the content more than 200 words and relevant and useful"
+        
+        client = openai.Completion.create(
+            model="gpt-3.5-turbo-instruct",
+            prompt=prompt,
+            max_tokens=1500  # Adjust the max_tokens value as needed
+        )
+
+        return client.choices[0].text.strip() if client.choices else ""
