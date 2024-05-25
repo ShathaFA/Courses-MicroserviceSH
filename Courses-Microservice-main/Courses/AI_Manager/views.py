@@ -226,7 +226,7 @@ from courseAdminstration.models import Quiz, Question, Lesson
 import openai
 
 # Move API key to a secure location (e.g., environment variable)
-openai.api_key = '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'
+openai.api_key = ''
 class GenerateMCQsAPIView(generics.CreateAPIView):
     serializer_class = GenerateMCQsSerializer
 
